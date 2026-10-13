@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kantong — Catatan Pengeluaran Bulanan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <h1>Kantong</h1>
+      <label class="month-pick">
+        <span class="sr">Pilih bulan</span>
+        <input type="month" id="bulan" />
+      </label>
+    </header>
+
+    <section class="gauge" aria-labelledby="gauge-title">
+      <p id="gauge-title" class="gauge-label">Sisa jatah bulan ini</p>
+      <p id="sisa" class="gauge-number">Rp0</p>
+      <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" id="bar">
+        <div class="bar-fill" id="bar-fill"></div>
+      </div>
+      <div class="gauge-meta">
+        <span>Terpakai <strong id="terpakai">Rp0</strong></span>
+        <span>Limit <strong id="limit-teks">belum diatur</strong></span>
+      </div>
+      <p id="status" class="status" aria-live="polite"></p>
+
+      <form id="form-limit" class="inline-form">
+        <label for="limit-input">Atur limit bulan ini</label>
+        <div class="row">
+          <input type="number" id="limit-input" min="0" step="1000" placeholder="contoh: 3000000" required />
+          <button type="submit">Simpan limit</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card" aria-labelledby="tambah-title">
+      <h2 id="tambah-title">Catat pengeluaran</h2>
+      <form id="form-expense" class="grid-form">
+        <label>Untuk apa
+          <input type="text" id="nama" placeholder="mis. makan siang" required maxlength="60" />
+        </label>
+        <label>Jumlah (Rp)
+          <input type="number" id="jumlah" min="0" step="1" placeholder="25000" required />
+        </label>
+        <label>Kategori
+          <input type="text" id="kategori" list="daftar-kategori" placeholder="ketik atau pilih" required maxlength="30" />
+          <datalist id="daftar-kategori"></datalist>
+        </label>
+        <label>Tanggal
+          <input type="date" id="tanggal" required />
+        </label>
+        <button type="submit" class="full">Tambah pengeluaran</button>
+      </form>
+    </section>
+
+    <section class="card" aria-labelledby="kat-title">
+      <h2 id="kat-title">Per kategori</h2>
+      <ul id="rekap" class="rekap"></ul>
+      <p id="rekap-kosong" class="empty" hidden>Belum ada pengeluaran di bulan ini. Catat yang pertama di atas.</p>
+    </section>
+
+    <section class="card" aria-labelledby="riwayat-title">
+      <h2 id="riwayat-title">Riwayat</h2>
+      <ul id="riwayat" class="riwayat"></ul>
+      <p id="riwayat-kosong" class="empty" hidden>Riwayat akan muncul di sini.</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
